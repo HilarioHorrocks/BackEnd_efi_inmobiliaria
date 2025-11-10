@@ -9,6 +9,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+// Middleware de logging temporal para debug
+app.use((req, res, next) => {
+  console.log(`🔍 ${req.method} ${req.path}`, req.body);
+  next();
+})
+
 // Rutas
 app.use("/api/auth", require("./routes/auth"))
 app.use("/api/properties", require("./routes/properties"))
