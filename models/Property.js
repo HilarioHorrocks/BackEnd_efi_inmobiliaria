@@ -103,6 +103,14 @@ const Property = sequelize.define(
       allowNull: true,
       defaultValue: []
     },
+    disponibilidad: {
+      type: DataTypes.ENUM('venta', 'alquiler', 'ambos'),
+      allowNull: false,
+      defaultValue: 'ambos',
+      validate: {
+        isIn: [['venta', 'alquiler', 'ambos']]
+      }
+    },
     id_agente: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -121,6 +129,9 @@ const Property = sequelize.define(
     indexes: [
       {
         fields: ['tipo']
+      },
+      {
+        fields: ['disponibilidad']
       },
       {
         fields: ['estado']

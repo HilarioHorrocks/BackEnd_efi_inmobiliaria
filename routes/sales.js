@@ -154,7 +154,7 @@ router.post("/purchase", auth, async (req, res) => {
       id_cliente: client.id,
       fecha_venta: new Date(),
       monto_total: property.precio,
-      estado: "pendiente", // Estado inicial para compras directas
+      estado: "finalizada", // Estado finalizada para compras directas
       monto_comision: property.precio * 0.03, // 3% de comisión
       porcentaje_comision: 3,
       forma_pago: "contado", // Forma de pago por defecto

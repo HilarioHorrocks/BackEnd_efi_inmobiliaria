@@ -126,6 +126,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800'
         ],
         caracteristicas: ['Balcón', 'Portero 24hs', 'Amenities', 'Cocina integrada'],
+        disponibilidad: 'ambos',
         id_agente: agent.id
       },      {
         direccion: 'Av. Libertador 8500, San Isidro, Buenos Aires',
@@ -144,6 +145,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800'
         ],
         caracteristicas: ['Jardín', 'Parrilla', 'Garage doble', 'Zona residencial'],
+        disponibilidad: 'venta',
         id_agente: agent.id
       },
       {
@@ -163,6 +165,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800'
         ],
         caracteristicas: ['Vista al río', 'Doble altura', 'Diseño industrial', 'Amenities premium'],
+        disponibilidad: 'ambos',
         id_agente: agent.id
       },
       {
@@ -181,6 +184,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800'
         ],
         caracteristicas: ['Cerca del subte', 'Ideal estudiantes', 'Monoambiente'],
+        disponibilidad: 'venta',
         id_agente: agent.id
       },
       {
@@ -200,6 +204,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800'
         ],
         caracteristicas: ['Muelle privado', 'Pileta', 'Parque amplio', 'Casa quinta'],
+        disponibilidad: 'alquiler',
         id_agente: agent.id
       },
       {
@@ -218,6 +223,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800'
         ],
         caracteristicas: ['Balcón francés', 'Muy luminoso', 'Transporte público'],
+        disponibilidad: 'ambos',
         id_agente: agent.id
       },
       {
@@ -237,6 +243,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800'
         ],
         caracteristicas: ['Vista 360°', 'Terraza privada', 'Cocina gourmet', 'Spa y gimnasio'],
+        disponibilidad: 'venta',
         id_agente: agent.id
       },      {
         direccion: 'Av. del Libertador 2200, Belgrano, CABA',
@@ -255,6 +262,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800'
         ],
         caracteristicas: ['Jardín amplio', 'Pileta', 'Tipo chalet', 'Ideal familias'],
+        disponibilidad: 'ambos',
         id_agente: agent.id
       },
       {
@@ -273,6 +281,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800'
         ],
         caracteristicas: ['Terraza propia', 'Cocina integrada', 'Laundry'],
+        disponibilidad: 'alquiler',
         id_agente: agent.id
       },
       {
@@ -292,6 +301,7 @@ async function seedDatabase() {
           'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800'
         ],
         caracteristicas: ['2 plantas', 'Quincho', 'Parrilla', 'Garage doble'],
+        disponibilidad: 'ambos',
         id_agente: agent.id
       }
     ]);

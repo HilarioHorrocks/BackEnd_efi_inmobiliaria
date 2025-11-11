@@ -15,25 +15,25 @@ async function setupDatabase() {
       password: process.env.DB_PASSWORD || ''
     })
     
-    console.log('✅ Conectado a MySQL')
+    console.log('Conectado a MySQL')
       // Crear la base de datos si no existe
     const dbName = process.env.DB_NAME || 'inmobiliaria'
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`)
-    console.log(`✅ Base de datos '${dbName}' creada o ya existe`)
+    console.log(`Base de datos '${dbName}' creada o ya existe`)
     
     // Usar la base de datos
     await connection.query(`USE \`${dbName}\``)
-    console.log(`✅ Usando base de datos '${dbName}'`)
+    console.log(`Usando base de datos '${dbName}'`)
     
-    console.log('🎉 Base de datos configurada correctamente')
-    console.log('\n📋 Información de conexión:')
+    console.log('Base de datos configurada correctamente')
+    console.log('\nInformación de conexión:')
     console.log(`   - Host: ${process.env.DB_HOST || 'localhost'}`)
     console.log(`   - Puerto: ${process.env.DB_PORT || 3306}`)
     console.log(`   - Usuario: ${process.env.DB_USER || 'root'}`)
     console.log(`   - Base de datos: ${dbName}`)
     
   } catch (error) {
-    console.error('❌ Error configurando la base de datos:')
+    console.error('Error configurando la base de datos:')
     
     if (error.code === 'ECONNREFUSED') {
       console.error('   - MySQL no está ejecutándose. Por favor, inicia MySQL Server.')

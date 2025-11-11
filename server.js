@@ -11,7 +11,7 @@ app.use(express.json())
 
 // Middleware de logging temporal para debug
 app.use((req, res, next) => {
-  console.log(`🔍 ${req.method} ${req.path}`, req.body);
+  console.log(`${req.method} ${req.path}`, req.body);
   next();
 })
 
@@ -26,14 +26,14 @@ app.use("/api/users", require("./routes/users"))
 // Inicializar base de datos
 async function initializeDatabase() {
   try {
-    console.log('🔄 Conectando a MySQL...')
+    console.log('Conectando a MySQL...')
     await sequelize.authenticate()
-    console.log('✅ Conexión a MySQL establecida')
+    console.log('✅Conexión a MySQL establecida')
     
     await sequelize.sync({ alter: false })
-    console.log('📊 Base de datos sincronizada')
+    console.log('Base de datos sincronizada')
   } catch (error) {
-    console.error('❌ Error de base de datos:')
+    console.error('Error de base de datos:')
     
     if (error.name === 'ConnectionError') {
       console.error('   - MySQL no está ejecutándose')
@@ -49,7 +49,7 @@ async function initializeDatabase() {
       console.error('   -', error.message)
     }
     
-    console.error('\n📋 Para configurar MySQL ejecuta: npm run setup-db')
+    console.error('\n Para configurar MySQL ejecuta: npm run setup-db')
     process.exit(1)
   }
 }
@@ -64,26 +64,26 @@ const server = app.listen(PORT, () => {
 
 server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
-    console.log(`❌ Puerto ${PORT} ya está en uso. Cerrando servidor...`)
+    console.log(`Puerto ${PORT} ya está en uso. Cerrando servidor...`)
     process.exit(1)
   } else {
-    console.error('❌ Error del servidor:', err)
+    console.error('Error del servidor:', err)
   }
 })
 
 // Manejar cierre graceful
 process.on('SIGTERM', () => {
-  console.log('🛑 Cerrando servidor...')
+  console.log('Cerrando servidor...')
   server.close(() => {
-    console.log('✅ Servidor cerrado')
+    console.log('Servidor cerrado')
     process.exit(0)
   })
 })
 
 process.on('SIGINT', () => {
-  console.log('🛑 Cerrando servidor...')
+  console.log('Cerrando servidor...')
   server.close(() => {
-    console.log('✅ Servidor cerrado')
+    console.log('Servidor cerrado')
     process.exit(0)
   })
 })
