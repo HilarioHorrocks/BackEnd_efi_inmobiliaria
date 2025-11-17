@@ -87,7 +87,7 @@ node seedDatabase.js
 backend/
 ├── config/
 │   └── database.js          # Configuración de Sequelize
-├── controllers/             # ✨ Lógica de negocio
+├── controllers/            
 │   ├── authController.js    # Autenticación y recuperación
 │   ├── usersController.js   # Gestión de usuarios
 │   ├── clientsController.js # Gestión de clientes y perfil
@@ -96,7 +96,7 @@ backend/
 │   └── salesController.js   # Gestión de ventas
 ├── middleware/
 │   └── auth.js              # Middleware de autenticación JWT
-├── migrations/              # ✨ Migraciones de base de datos
+├── migrations/              
 │   ├── 20250111000001-create-users.js
 │   ├── 20250111000002-create-properties.js
 │   ├── 20250111000003-create-clients.js
@@ -109,7 +109,7 @@ backend/
 │   ├── Property.js          # Modelo de propiedades
 │   ├── Rental.js            # Modelo de alquileres
 │   └── Sale.js              # Modelo de ventas
-├── routes/                  # ✨ Solo definiciones de endpoints
+├── routes/                  
 │   ├── auth.js              # Rutas de autenticación
 │   ├── users.js             # CRUD de usuarios
 │   ├── clients.js           # CRUD de clientes + perfil
@@ -119,93 +119,15 @@ backend/
 ├── scripts/
 │   └── setupDatabase.js     # Script de configuración inicial
 ├── .env                     # Variables de entorno (no incluir en git)
-├── .sequelizerc             # ✨ Configuración de Sequelize CLI
+├── .sequelizerc             
 ├── .gitignore
 ├── package.json
 ├── seedDatabase.js          # Datos de prueba
 └── server.js                # Punto de entrada
 ```
 
-### ✨ Mejoras de Arquitectura
 
-**Separación de Responsabilidades (MVC)**:
-- **Routes**: Solo definen endpoints y aplican middleware
-- **Controllers**: Contienen toda la lógica de negocio
-- **Models**: Definen la estructura de datos
-
-**Migraciones de Base de Datos**:
-- Versionado del esquema de base de datos
-- Permite revertir cambios (`up`/`down`)
-- Facilita el trabajo en equipo
-
-## 🗄️ Migraciones de Base de Datos
-
-### Comandos de Migraciones
-
-```bash
-# Instalar Sequelize CLI globalmente (si no lo tienes)
-npm install -g sequelize-cli
-
-# Ejecutar todas las migraciones pendientes
-npx sequelize-cli db:migrate
-
-# Revertir la última migración
-npx sequelize-cli db:migrate:undo
-
-# Revertir todas las migraciones
-npx sequelize-cli db:migrate:undo:all
-
-# Ver estado de las migraciones
-npx sequelize-cli db:migrate:status
-
-# Crear una nueva migración
-npx sequelize-cli migration:generate --name nombre-de-la-migracion
-```
-
-### Primera Vez
-
-**Opción 1: Usar Migraciones (Recomendado)**
-```bash
-# Crear la base de datos
-CREATE DATABASE inmobiliaria CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-# Ejecutar migraciones
-npx sequelize-cli db:migrate
-
-# Llenar con datos de prueba
-node seedDatabase.js
-```
-
-**Opción 2: Sync Automático (Solo desarrollo)**
-```bash
-# El servidor creará las tablas automáticamente
-npm run dev
-
-# Llenar con datos de prueba
-node seedDatabase.js
-```
-
-## 🔐 Autenticación
-
-La API utiliza JWT (JSON Web Tokens) para autenticación.
-
-### Obtener token:
-```bash
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "correo": "usuario@ejemplo.com",
-  "contraseña": "password123"
-}
-```
-
-### Usar token en requests:
-```bash
-Authorization: Bearer <tu_token_jwt>
-```
-
-## 📚 Endpoints Principales
+##  Endpoints Principales
 
 ### Autenticación
 - `POST /api/auth/register` - Registro de usuario
@@ -244,13 +166,13 @@ Authorization: Bearer <tu_token_jwt>
 - `POST /api/sales/purchase` - Comprar propiedad (cliente)
 - `DELETE /api/sales/:id` - Cancelar venta
 
-## 🎭 Roles de Usuario
+## Roles de Usuario
 
 - **admin**: Acceso total al sistema
 - **agente**: Gestión de propiedades y clientes
 - **cliente**: Visualización de propiedades, alquileres y compras
 
-## 🗄️ Modelos de Base de Datos
+## Modelos de Base de Datos
 
 ### Users
 - Usuarios del sistema con diferentes roles
@@ -273,7 +195,7 @@ Authorization: Bearer <tu_token_jwt>
 - Transacciones de venta
 - Estados: finalizada, cancelada
 
-## 🔒 Seguridad
+## Seguridad
 
 - Contraseñas hasheadas con bcrypt
 - Tokens JWT con expiración de 24 horas
@@ -281,16 +203,6 @@ Authorization: Bearer <tu_token_jwt>
 - Validación de roles por endpoint
 - Reset de contraseña con tokens temporales
 
-## 🚦 Estado del Servidor
-
-El servidor mostrará los siguientes mensajes al iniciar:
-
-```
-🔄 Conectando a MySQL...
-Servidor corriendo en puerto 5000
-✅ Conexión a MySQL establecida
-📊 Base de datos sincronizada
-```
 
 ## 📧 Configuración de SendGrid
 
@@ -299,21 +211,6 @@ Servidor corriendo en puerto 5000
 3. Generar API Key
 4. Configurar en `.env`
 
-## 👥 Usuarios de Prueba
 
-Después de ejecutar `node seedDatabase.js`:
 
-```
-Admin:
-- Email: admin@inmobiliaria.com
-- Password: Admin123!
-
-Agente:
-- Email: agente@inmobiliaria.com
-- Password: Agente123!
-
-Cliente:
-- Email: cliente@inmobiliaria.com
-- Password: Cliente123!
-```
 
