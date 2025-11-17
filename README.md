@@ -87,8 +87,21 @@ node seedDatabase.js
 backend/
 ├── config/
 │   └── database.js          # Configuración de Sequelize
+├── controllers/             # ✨ Lógica de negocio
+│   ├── authController.js    # Autenticación y recuperación
+│   ├── usersController.js   # Gestión de usuarios
+│   ├── clientsController.js # Gestión de clientes y perfil
+│   ├── propertiesController.js # Gestión de propiedades
+│   ├── rentalsController.js # Gestión de alquileres
+│   └── salesController.js   # Gestión de ventas
 ├── middleware/
 │   └── auth.js              # Middleware de autenticación JWT
+├── migrations/              # ✨ Migraciones de base de datos
+│   ├── 20250111000001-create-users.js
+│   ├── 20250111000002-create-properties.js
+│   ├── 20250111000003-create-clients.js
+│   ├── 20250111000004-create-rentals.js
+│   └── 20250111000005-create-sales.js
 ├── models/
 │   ├── index.js             # Configuración de relaciones
 │   ├── User.js              # Modelo de usuarios
@@ -96,7 +109,7 @@ backend/
 │   ├── Property.js          # Modelo de propiedades
 │   ├── Rental.js            # Modelo de alquileres
 │   └── Sale.js              # Modelo de ventas
-├── routes/
+├── routes/                  # ✨ Solo definiciones de endpoints
 │   ├── auth.js              # Rutas de autenticación
 │   ├── users.js             # CRUD de usuarios
 │   ├── clients.js           # CRUD de clientes + perfil
@@ -106,10 +119,70 @@ backend/
 ├── scripts/
 │   └── setupDatabase.js     # Script de configuración inicial
 ├── .env                     # Variables de entorno (no incluir en git)
+├── .sequelizerc             # ✨ Configuración de Sequelize CLI
 ├── .gitignore
 ├── package.json
 ├── seedDatabase.js          # Datos de prueba
 └── server.js                # Punto de entrada
+```
+
+### ✨ Mejoras de Arquitectura
+
+**Separación de Responsabilidades (MVC)**:
+- **Routes**: Solo definen endpoints y aplican middleware
+- **Controllers**: Contienen toda la lógica de negocio
+- **Models**: Definen la estructura de datos
+
+**Migraciones de Base de Datos**:
+- Versionado del esquema de base de datos
+- Permite revertir cambios (`up`/`down`)
+- Facilita el trabajo en equipo
+
+## 🗄️ Migraciones de Base de Datos
+
+### Comandos de Migraciones
+
+```bash
+# Instalar Sequelize CLI globalmente (si no lo tienes)
+npm install -g sequelize-cli
+
+# Ejecutar todas las migraciones pendientes
+npx sequelize-cli db:migrate
+
+# Revertir la última migración
+npx sequelize-cli db:migrate:undo
+
+# Revertir todas las migraciones
+npx sequelize-cli db:migrate:undo:all
+
+# Ver estado de las migraciones
+npx sequelize-cli db:migrate:status
+
+# Crear una nueva migración
+npx sequelize-cli migration:generate --name nombre-de-la-migracion
+```
+
+### Primera Vez
+
+**Opción 1: Usar Migraciones (Recomendado)**
+```bash
+# Crear la base de datos
+CREATE DATABASE inmobiliaria CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# Ejecutar migraciones
+npx sequelize-cli db:migrate
+
+# Llenar con datos de prueba
+node seedDatabase.js
+```
+
+**Opción 2: Sync Automático (Solo desarrollo)**
+```bash
+# El servidor creará las tablas automáticamente
+npm run dev
+
+# Llenar con datos de prueba
+node seedDatabase.js
 ```
 
 ## 🔐 Autenticación
